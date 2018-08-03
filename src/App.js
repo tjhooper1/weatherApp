@@ -9,10 +9,12 @@ class App extends Component {
 
   state = {
     country: "",
-    city: ""
+    city: "",
+    temperature: "",
+    condition: "" 
   }
   
-  updateWeather =  (e) => {
+  updateWeather = async (e) => {
     e.preventDefault();
     
     const API_KEY = '35b132f4fe91687cfbf36ff39dd7054c';
@@ -20,17 +22,15 @@ class App extends Component {
     let city = e.target.elements.city.value;
     let URL = `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}`;
 
-  fetch(URL)
-  .then((response) => {
-    return response.json();
-  })
-  .then((myJson) => {
-    console.log(myJson);
-  });
+  const apiCall = await fetch(URL);
+  const data = await apiCall.json();
+  
+  let condition = data.weather[0].description;
 
   this.setState({
     country: country,
-    city: city
+    city: city,
+    condition: condition
   });
   console.log(this.state);
 
@@ -43,6 +43,7 @@ class App extends Component {
         <Weather 
         country={this.state.country}
         city={this.state.city}
+        condition={this.state.condition}
         updateWeather={this.updateWeather}
         />
         

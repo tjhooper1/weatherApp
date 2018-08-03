@@ -10,8 +10,8 @@ function Weather (props) {
           <input type="text" name="country" placeholder="country"/>
           <button>submit</button>
       </form>
-      <p>{props.city}</p>
-      <p>{props.country}</p>
+      <p>The temperature for {props.city} is: </p>
+      <p>The condition is {props.condition}</p>
       </div>
     ); 
 }
