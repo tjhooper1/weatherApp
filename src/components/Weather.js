@@ -1,0 +1,19 @@
+import React from 'react';
+import '../App.css';
+
+function Weather (props) {
+  
+    return (
+      <div>
+      <form onSubmit={props.updateWeather}>
+          <input type="text" name="city" placeholder="city"/>
+          <input type="text" name="country" placeholder="country"/>
+          <button>submit</button>
+      </form>
+      <p>{props.city}</p>
+      <p>{props.country}</p>
+      </div>
+    ); 
+}
+
+export default Weather;
