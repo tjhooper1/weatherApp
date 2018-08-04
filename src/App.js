@@ -24,13 +24,16 @@ class App extends Component {
 
   const apiCall = await fetch(URL);
   const data = await apiCall.json();
+  console.log(data);
   
   let condition = data.weather[0].description;
+  let temperature = Math.floor((data.main.temp * 9/5) - 459.67);
 
   this.setState({
     country: country,
     city: city,
-    condition: condition
+    condition: condition,
+    temperature: temperature
   });
   console.log(this.state);
 
@@ -44,6 +47,7 @@ class App extends Component {
         country={this.state.country}
         city={this.state.city}
         condition={this.state.condition}
+        temperature={this.state.temperature}
         updateWeather={this.updateWeather}
         />
         
