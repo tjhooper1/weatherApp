@@ -8,11 +8,11 @@ import Weather from './components/Weather';
 class App extends Component {
 
   state = {
-    country: "",
-    city: "",
-    temperature: "",
-    condition: "",
-    cod: "" 
+    country: undefined,
+    city: undefined,
+    temperature: undefined,
+    condition: undefined,
+    error: undefined 
   }
   
   updateWeather = async (e) => {
@@ -25,28 +25,42 @@ class App extends Component {
 
   const apiCall = await fetch(URL);
   const data = await apiCall.json();
+  
   console.log(data);
   
-  let condition = data.weather[0].description;
-  let temperature = Math.floor((data.main.temp * 9/5) - 459.67);
-  let cod = data.cod;
+  
+  if(city && country){
 
-  this.setState({
-    country: country,
-    city: city,
-    condition: condition,
-    temperature: temperature,
-    cod: cod,
-  });
+    this.setState({
+      country: data.sys.country,
+      city: data.name,
+      condition: data.weather[0].description,
+      temperature: Math.floor((data.main.temp * 9/5) - 459.67),
+      error: data.cod
+    });
+  }else{
+    this.setState({
+      country: undefined,
+      city: undefined,
+      condition: undefined,
+      temperature: undefined,
+      error: data.cod
+    });
+  }
+
+
+
   console.log(this.state);
 
 };
+
 
   render() {
     return (
       <div className="App">
         <Title />
         <Weather 
+        error = {this.state.error}
         country={this.state.country}
         city={this.state.city}
         condition={this.state.condition}
