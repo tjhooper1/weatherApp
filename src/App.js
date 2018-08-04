@@ -11,7 +11,8 @@ class App extends Component {
     country: "",
     city: "",
     temperature: "",
-    condition: "" 
+    condition: "",
+    cod: "" 
   }
   
   updateWeather = async (e) => {
@@ -28,12 +29,14 @@ class App extends Component {
   
   let condition = data.weather[0].description;
   let temperature = Math.floor((data.main.temp * 9/5) - 459.67);
+  let cod = data.cod;
 
   this.setState({
     country: country,
     city: city,
     condition: condition,
-    temperature: temperature
+    temperature: temperature,
+    cod: cod,
   });
   console.log(this.state);
 
