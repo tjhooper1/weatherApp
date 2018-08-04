@@ -4,7 +4,7 @@ import '../App.css';
 function Weather (props) {
   
     return (
-      <div>
+      <div className="form">
       <form onSubmit={props.updateWeather}>
           <input type="text" name="city" placeholder="city"/>
           <input type="text" name="country" placeholder="country"/>
@@ -26,10 +26,7 @@ function Weather (props) {
 	 		<span className="weather__value"> { props.condition } </span>
 	 </p> 
 	 }
-	 { 
-	 	props.error && <p className="weather__error">not a valid city</p>  
-	 }
-      
+	 
       </div>
     ); 
 }

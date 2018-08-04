@@ -4,7 +4,7 @@ import '../App.css';
 function Title (props) {
   
     return (
-      <div>
+      <div className="title">
       <h1>Get your local weather</h1>
       </div>
     ); 
